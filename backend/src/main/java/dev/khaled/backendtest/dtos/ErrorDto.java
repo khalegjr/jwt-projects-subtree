@@ -1,4 +1,4 @@
-package dev.khaled.backendtest.dto;
+package dev.khaled.backendtest.dtos;
 
 public record ErrorDto(String message) {
 }

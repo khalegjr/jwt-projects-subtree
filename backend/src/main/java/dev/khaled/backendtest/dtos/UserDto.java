@@ -1,4 +1,4 @@
-package dev.khaled.backendtest.dto;
+package dev.khaled.backendtest.dtos;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
