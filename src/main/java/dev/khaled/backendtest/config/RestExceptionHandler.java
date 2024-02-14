@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import dev.khaled.backendtest.dto.ErrorDto;
+import dev.khaled.backendtest.dtos.ErrorDto;
 import dev.khaled.backendtest.exceptions.AppException;
 
 @ControllerAdvice
