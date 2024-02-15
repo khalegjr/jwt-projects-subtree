@@ -1,10 +1,10 @@
-# 1. jwt-projects-subtree
+# jwt-projects-subtree
 
 Teste gerenciando sub-repositórios com subtree
 
-# 2. Comandos básicos
+## 1. Comandos básicos
 
-## 2.1. Adicionando um sub-repositório
+### 1.1. Adicionando um sub-repositório
 
 ```bash
 git remote add <subrepo-remoto> <subrepo-url>
@@ -20,7 +20,7 @@ Esse comando adiciona um repositório na lista de repositórios remotos. Cria um
 > - *subrepo-remoto*: Nome/atalho para o sub-repositório.
 > - *subrepo-url*: Endereço url do sub-repositório.
 
-## 2.2. Criando uma subtree
+### 1.2. Criando uma subtree
 
 ```bash
 git subtree add --prefix <subrepo-path> <subrepo-remoto> main --squash
@@ -38,7 +38,7 @@ Esse comando cria uma pasta que conterá o código do sub-repositório.
 > - *branch*:
 > - *--squash*: comprime todos os commits em um único commit e faz merge com o repositório container.
 
-## 2.3. Busca todos as alterações de uma subtree
+### 1.3. Busca todos as alterações de uma subtree
 
 ```bash
 git subtree pull --prefix <subrepo-path> <subrepo-remoto> main --squash
@@ -56,7 +56,7 @@ Esse comando busca todas as mudanças no sub-repositório.
 > - *branch*:
 > - *--squash*: comprime todos os commits em um único commit e faz merge com o repositório container.
 
-## 2.4. Enviando alterações para uma subtree
+### 1.4. Enviando alterações para uma subtree
 
 ```bash
 git subtree push --prefix <subrepo-path> <subrepo-remoto> main
@@ -73,7 +73,7 @@ Esse comando envia as alterações para o sub-repositório.
 > - *subrepo-remoto*: Nome/atalho para o sub-repositório, criado no primeiro comando.
 > - *branch*:
 
-# 3. Fontes
+## 2. Fontes
 
 - <https://www.possatti.com.br/git-subtrees/>
 - <https://www.atlassian.com/git/tutorials/git-subtree>
