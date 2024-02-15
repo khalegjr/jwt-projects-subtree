@@ -29,9 +29,9 @@
           </div>
 
           <div class="form-outline mb-4">
-            <input class="form-control" type="password" id="passwordName"
+            <input class="form-control" type="password" id="loginPassword"
               name="password" [(ngModel)]="password">
-            <label class="form-label" for="passwordName">Password</label>
+            <label class="form-label" for="loginPassword">Password</label>
           </div>
 
           <button type="submit" class="btn btn-primary btn-block mb-4">
@@ -43,7 +43,7 @@
       <div
         [ngClass]="active == 'register' ? 'tab-pane fade show active' : 'tab-pane fade'">
 
-        <form (ngSubmit)="onSubmitRegister()" #registerForm="ngForm">
+        <form (ngSubmit)="onSubmitRegister()" #loginForm="ngForm">
           <div class="form-outline mb-4 mt-4">
             <input class="form-control" type="text" id="firstName"
               name="firstName" [(ngModel)]="firstName">
@@ -63,9 +63,9 @@
           </div>
 
           <div class="form-outline mb-4">
-            <input class="form-control" type="password" id="passwordName"
+            <input class="form-control" type="password" id="password"
               name="password" [(ngModel)]="password">
-            <label class="form-label" for="passwordName">Password</label>
+            <label class="form-label" for="password">Password</label>
           </div>
 
           <button type="submit" class="btn btn-primary btn-block mb-4">

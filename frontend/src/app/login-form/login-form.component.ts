@@ -27,6 +27,10 @@ export class LoginFormComponent {
     this.active = "register";
   }
 
+  // onChangeTab(tab: string): void {
+  //   this.active = tab;
+  // }
+
   onSubmitLogin(): void {
     this.onSubmitLoginEvent.emit({
       login: this.login,
@@ -35,7 +39,7 @@ export class LoginFormComponent {
   }
 
   onSubmitRegister(): void {
-    this.onSubmitLoginEvent.emit({
+    this.onSubmitRegisterEvent.emit({
       firstName: this.firstName,
       lastName: this.lastName,
       login: this.login,
