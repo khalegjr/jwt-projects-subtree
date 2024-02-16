@@ -11,7 +11,7 @@ public class AppException extends RuntimeException {
         this.httpStatus = httpStatus;
     }
 
-    public HttpStatus geHttpStatus() {
+    public HttpStatus getHttpStatus() {
         return httpStatus;
     }
 }
