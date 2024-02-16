@@ -17,9 +17,10 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 public class WebConfig {
 
     @Bean
-    public FilterRegistrationBean corsFilter() {
+    public FilterRegistrationBean corsFilterReg() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
+
         config.setAllowCredentials(true);
         config.addAllowedOrigin("http://localhost:4200");
         config.setAllowedHeaders(Arrays.asList(
@@ -32,11 +33,13 @@ public class WebConfig {
                 HttpMethod.PUT.name(),
                 HttpMethod.DELETE.name()));
         config.setMaxAge(3600L);
+
         source.registerCorsConfiguration("/**", config);
 
         FilterRegistrationBean bean = new FilterRegistrationBean(
-                new CorsFilter(source));
+                        new CorsFilter(source));
 
+         // should be set order to -100 because we need to CorsFilter before SpringSecurityFilter
         bean.setOrder(-102);
         return bean;
     }

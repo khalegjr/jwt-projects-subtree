@@ -1,31 +1,18 @@
 package dev.khaled.backendtest.mappers;
 
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+
 import dev.khaled.backendtest.dtos.SignUpDto;
 import dev.khaled.backendtest.dtos.UserDto;
 import dev.khaled.backendtest.entities.User;
 
-// @Mapper(componentModel = "spring")
-public class UserMapper {
+@Mapper(componentModel = "spring")
+public interface UserMapper {
 
-    public UserDto toUserDto(User user) {
-        UserDto userDto = new UserDto();
+    UserDto toUserDto(User user);
 
-        userDto.setId(user.getId());
-        userDto.setFirstName(user.getFirstName());
-        userDto.setLastName(user.getLastName());
-        userDto.setLogin(user.getLogin());
+    @Mapping(target = "password", ignore = true)
+    User signUpToUser(SignUpDto signUpDto);
 
-        return userDto;
-    }
-
-    // @Mapping(target = "password", ignore = true)
-    public User signUpToUser(SignUpDto signUpDto) {
-        User user = new User();
-
-        user.setFirstName(signUpDto.firstName());
-        user.setLastName(signUpDto.lastName());
-        user.setLogin(signUpDto.login());
-
-        return user;
-    }
 }
