@@ -1,4 +1,17 @@
 <div>
+  <app-buttons (loginEvent)="showComponent('login')"
+    (logoutEvent)="showComponent('welcome')" />
+
+  @if(componentToShow == 'welcome'){
+  <app-welcome-content />
+  }
+
+  @if(componentToShow == 'login'){
   <app-login-form (onSubmitLoginEvent)="onLogin($event)"
-    (onSubmitRegisterEvent)="onRegister($event)"></app-login-form>
+    (onSubmitRegisterEvent)="onRegister($event)" />
+  }
+
+  @if(componentToShow == 'messages'){
+  <app-auth-content />
+  }
 </div>
