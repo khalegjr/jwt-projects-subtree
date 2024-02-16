@@ -26,6 +26,9 @@ export class ContentComponent {
     this.axiosService.request("POST", "/login", {
       login: input.login,
       password: input.password,
+    }).then(response => {
+      this.axiosService.setAuthToken(response.data.token);
+      this.componentToShow = "messages";
     });
   }
 
@@ -35,6 +38,9 @@ export class ContentComponent {
       lastName: input.lastName,
       login: input.login,
       password: input.password,
+    }).then(response => {
+      this.axiosService.setAuthToken(response.data.token);
+      this.componentToShow = "messages";
     });
   }
 }
