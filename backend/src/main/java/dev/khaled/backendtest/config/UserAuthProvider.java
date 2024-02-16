@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
@@ -15,6 +16,10 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 import com.auth0.jwt.interfaces.JWTVerifier;
 
 import dev.khaled.backendtest.dtos.UserDto;
+import dev.khaled.backendtest.entities.User;
+import dev.khaled.backendtest.exceptions.AppException;
+import dev.khaled.backendtest.mappers.UserMapper;
+import dev.khaled.backendtest.repositories.UserRepository;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 
@@ -24,6 +29,9 @@ public class UserAuthProvider {
 
     @Value("${security.jwt.token.secret-key:secret-key}")
     private String secretKey;
+
+    private final UserRepository userRepository;
+    private final UserMapper userMapper;
 
     @PostConstruct
     protected void init() {
@@ -51,11 +59,24 @@ public class UserAuthProvider {
         DecodedJWT decoded = verifier.verify(token);
 
         UserDto user = UserDto.builder()
-            .login(decoded.getIssuer())
-            .firstName(decoded.getClaim("firstName").asString())
-            .lastName(decoded.getClaim("lastName").asString())
+                .login(decoded.getIssuer())
+                .firstName(decoded.getClaim("firstName").asString())
+                .lastName(decoded.getClaim("lastName").asString())
                 .build();
 
         return new UsernamePasswordAuthenticationToken(user, null, Collections.emptyList());
+    }
+
+    public Authentication validateTokenStrongly(String token) {
+        Algorithm algorithm = Algorithm.HMAC256(secretKey);
+
+        JWTVerifier verifier = JWT.require(algorithm).build();
+
+        DecodedJWT decoded = verifier.verify(token);
+
+        User user = userRepository.findByLogin(decoded.getIssuer())
+                .orElseThrow(() -> new AppException("Unknown user", HttpStatus.NOT_FOUND));
+
+        return new UsernamePasswordAuthenticationToken(userMapper.toUserDto(user), null, Collections.emptyList());
     }
 }
